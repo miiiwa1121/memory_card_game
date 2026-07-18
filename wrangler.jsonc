@@ -1,0 +1,14 @@
+{
+  // Cloudflare Workers (Static Assets) として out/ をそのまま配信する設定。
+  // この設定が無いと `wrangler deploy` が Next.js を検出して OpenNext(SSR) 化を試み、
+  // static export 構成（output: "export"）では .next/standalone が存在せずビルドが失敗する。
+  // name はダッシュボード上の Worker 名と一致させること（URLのサブドメインに対応）。
+  "name": "vegetable-card-game",
+  "compatibility_date": "2026-06-25",
+  "assets": {
+    // next build（output: export）が生成する静的ファイル一式
+    "directory": "./out",
+    // 未知のパスは out/404.html を返す（next build が生成する404ページ）
+    "not_found_handling": "404-page"
+  }
+}

@@ -1,0 +1,115 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.timer {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #2e7d32;
+  margin-bottom: 16px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 10;
+  animation: fadeIn 0.3s ease;
+}
+
+.overlayCard {
+  background: #fff;
+  padding: 40px 48px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+}
+
+.clearTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #2e7d32;
+  margin: 0 0 8px;
+}
+
+.clearText {
+  font-size: 1rem;
+  color: #555;
+  margin: 0 0 20px;
+}
+
+.resultLabel {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 0 0 4px;
+}
+
+.resultTime {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #2e7d32;
+  margin: 0 0 28px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1px;
+}
+
+.buttonRow {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.retryButton,
+.quitButton {
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 12px 28px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  text-decoration: none;
+  border: 2px solid #43a047;
+}
+
+.retryButton {
+  background: #43a047;
+  color: #fff;
+}
+
+.retryButton:hover {
+  background: #2e7d32;
+  border-color: #2e7d32;
+}
+
+.quitButton {
+  background: #fff;
+  color: #43a047;
+}
+
+.quitButton:hover {
+  background: #e8f5e9;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

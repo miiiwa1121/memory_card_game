@@ -1,0 +1,7 @@
+# Cloudflare Pages 用のレスポンスヘッダ設定。
+# ビルド時に public/ の中身は out/ 直下へコピーされ、Pages がこのファイルを認識する。
+
+# OGP画像は拡張子なしの out/opengraph-image として生成されるため、
+# 明示的に image/png を指定しないと application/octet-stream で配信されSNSプレビューが出ない。
+/opengraph-image
+  Content-Type: image/png

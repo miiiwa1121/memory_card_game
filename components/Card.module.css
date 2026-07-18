@@ -1,0 +1,71 @@
+.card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+.isFlipped {
+  transform: rotateY(180deg);
+}
+
+.front,
+.back {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.front {
+  background: linear-gradient(145deg, #66bb6a, #43a047);
+}
+
+.questionMark {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.back {
+  background: #ffffff;
+  transform: rotateY(180deg);
+  padding: 6px;
+  gap: 4px;
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  flex: 1;
+}
+
+.image {
+  object-fit: contain;
+}
+
+.name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #2e7d32;
+  text-align: center;
+}
