@@ -7,13 +7,13 @@ import Footer from "@/components/Footer";
 import styles from "./page.module.css";
 
 const games = [
-  { name: "野菜", desc: "8種類の野菜カードのペアを揃える", url: "/vegetable", emoji: "🥬" },
-  { name: "音階", desc: "ピアノの音を聴き分けて同じ音程のペアを揃える", url: "/sound", emoji: "🎵" },
-  { name: "色覚", desc: "似たような色のペアを見分ける", url: "/color", emoji: "🎨" },
-  { name: "言語", desc: "日本語と英語の単語ペアを見つける", url: "/language", emoji: "🌏" },
-  { name: "モールス", desc: "ひらがなとモールス信号のペアを見つける", url: "/morse", emoji: "📡" },
-  { name: "リズム感", desc: "リズムを聴いて同じパターンのペアを見つける", url: "/rhythm", emoji: "🥁" },
-  { name: "知識", desc: "雑学問題と答えのペアを見つける", url: "/knowledge", emoji: "📚" }
+  { name: "野菜", desc: "8種類の野菜カードのペアを揃える", url: "/vegetable", emoji: "🥬", size: "size2x2" },
+  { name: "音階", desc: "ピアノの音を聴き分けて同じ音程のペアを揃える", url: "/sound", emoji: "🎵", size: "size2x1" },
+  { name: "色覚", desc: "似たような色のペアを見分ける", url: "/color", emoji: "🎨", size: "size1x1" },
+  { name: "言語", desc: "日本語と英語の単語ペアを見つける", url: "/language", emoji: "🌏", size: "size1x1" },
+  { name: "モールス", desc: "ひらがなとモールス信号のペアを見つける", url: "/morse", emoji: "📡", size: "size2x1" },
+  { name: "リズム感", desc: "リズムを聴いて同じパターンのペアを見つける", url: "/rhythm", emoji: "🥁", size: "size3x1" },
+  { name: "知識", desc: "雑学問題と答えのペアを見つける", url: "/knowledge", emoji: "📚", size: "size2x1" }
 ];
 
 export default function Home() {
@@ -25,20 +25,6 @@ export default function Home() {
 
   const closePopup = () => {
     setSelectedGame(null);
-  };
-
-  // Bento Gridのサイズ割り当てロジック
-  const getBentoClass = (index: number) => {
-    switch (index) {
-      case 0: return `${styles.bentoCard} ${styles.size2x2}`; // 1. 野菜
-      case 1: return `${styles.bentoCard} ${styles.size2x1}`; // 2. 音階
-      case 2: return `${styles.bentoCard} ${styles.size1x1}`; // 3. 色覚
-      case 3: return `${styles.bentoCard} ${styles.size1x1}`; // 4. 言語
-      case 4: return `${styles.bentoCard} ${styles.size2x1}`; // 5. モールス
-      case 5: return `${styles.bentoCard} ${styles.size3x1}`; // 6. リズム感
-      case 6: return `${styles.bentoCard} ${styles.size2x1}`; // 7. 知識
-      default: return `${styles.bentoCard} ${styles.size1x1}`;
-    }
   };
 
   return (
@@ -55,11 +41,11 @@ export default function Home() {
 
         {/* Bento Grid レイアウト (5列) */}
         <div className={styles.bentoGrid}>
-          {games.map((game, i) => {
+          {games.map((game) => {
             return (
               <div 
                 key={game.url} 
-                className={getBentoClass(i)}
+                className={`${styles.bentoCard} ${styles[game.size as keyof typeof styles] || styles.size1x1}`}
                 onClick={() => handleCardClick(game)}
                 role="button"
                 tabIndex={0}
@@ -117,8 +103,8 @@ export default function Home() {
           </div>
         </div>
       )}
-      <Footer />
       </main>
+      <Footer />
     </div>
   );
 }

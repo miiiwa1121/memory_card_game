@@ -46,11 +46,11 @@ export default function Card({ card, flipped, matched, onClick }: CardProps) {
               />
             )}
             {card.hex && (
-              <div style={{ backgroundColor: card.hex, width: '100%', height: '100%', borderRadius: '8px' }}></div>
+              <div className={styles.colorBox} style={{ backgroundColor: card.hex }}></div>
             )}
             {card.text && (
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', width: '100%', padding: '8px' }}>
-                <span style={{ fontSize: '1.2rem', fontWeight: 'bold', textAlign: 'center', wordBreak: 'break-word', color: '#333' }}>
+              <div className={styles.textWrap}>
+                <span className={styles.textContent}>
                   {card.text}
                 </span>
               </div>

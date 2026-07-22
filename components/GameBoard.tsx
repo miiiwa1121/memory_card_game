@@ -9,6 +9,7 @@ type GameBoardProps = {
   cardDefinitions?: Omit<CardData, "uid">[];
   initialDeck?: Omit<CardData, "uid">[];
   backLink?: string;
+  onQuit?: () => void;
   theme?: "vegetable" | "color" | "language" | "morse" | "knowledge";
 };
 
@@ -37,7 +38,7 @@ function formatTime(ms: number): string {
   return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 }
 
-export default function GameBoard({ cardDefinitions, initialDeck, backLink = "/", theme }: GameBoardProps) {
+export default function GameBoard({ cardDefinitions, initialDeck, backLink = "/", onQuit, theme }: GameBoardProps) {
   const [cards, setCards] = useState<CardData[]>([]);
   const [flipped, setFlipped] = useState<number[]>([]);
   const [matched, setMatched] = useState<string[]>([]);
@@ -46,12 +47,21 @@ export default function GameBoard({ cardDefinitions, initialDeck, backLink = "/"
   const [running, setRunning] = useState(false);
   const startRef = useRef<number>(0);
 
+  // 依存配列による再レンダリング防止のため参照を保持
+  const defsRef = useRef(cardDefinitions);
+  defsRef.current = cardDefinitions;
+  const initialDeckRef = useRef(initialDeck);
+  initialDeckRef.current = initialDeck;
+
   const initGame = useCallback(() => {
     let newDeck: CardData[] = [];
-    if (initialDeck) {
-      newDeck = shuffle(initialDeck.map((def, i) => ({ ...def, uid: i })));
-    } else if (cardDefinitions) {
-      newDeck = buildDeck(cardDefinitions);
+    const iDeck = initialDeckRef.current;
+    const defs = defsRef.current;
+    
+    if (iDeck) {
+      newDeck = shuffle(iDeck.map((def, i) => ({ ...def, uid: i })));
+    } else if (defs) {
+      newDeck = buildDeck(defs);
     }
     setCards(newDeck);
     setFlipped([]);
@@ -60,7 +70,7 @@ export default function GameBoard({ cardDefinitions, initialDeck, backLink = "/"
     setElapsedMs(0);
     startRef.current = Date.now();
     setRunning(true);
-  }, [cardDefinitions, initialDeck]);
+  }, []);
 
   useEffect(() => {
     initGame();
@@ -120,8 +130,21 @@ export default function GameBoard({ cardDefinitions, initialDeck, backLink = "/"
 
   return (
     <div className={`${styles.wrapper} ${theme ? `theme-${theme}` : ""}`}>
-      <div className={styles.timer} aria-live="off">
-        ⏱ {formatTime(elapsedMs)}
+      <div className="game-header">
+        <div className="game-info">
+          <span>⏱ {formatTime(elapsedMs)}</span>
+        </div>
+        <div className="game-controls">
+          {onQuit ? (
+            <button onClick={onQuit} className="quit-button--header" style={{ textDecoration: "none" }}>
+              やめる
+            </button>
+          ) : (
+            <Link href={backLink} className="quit-button--header" style={{ textDecoration: "none" }}>
+              やめる
+            </Link>
+          )}
+        </div>
       </div>
 
       <div className={styles.board}>
@@ -137,23 +160,31 @@ export default function GameBoard({ cardDefinitions, initialDeck, backLink = "/"
       </div>
 
       {isCleared && (
-        <div className={styles.overlay} role="dialog" aria-modal="true">
-          <div className={styles.overlayCard}>
-            <h2 className={styles.clearTitle}>ゲームクリア！</h2>
-            <p className={styles.clearText}>全8ペアを揃えました 🎉</p>
-            <p className={styles.resultLabel}>クリアタイム</p>
-            <p className={styles.resultTime}>{formatTime(elapsedMs)}</p>
-            <div className={styles.buttonRow}>
+        <div className="result-overlay" role="dialog" aria-modal="true">
+          <div className="result-card">
+            <h2 className="result-title">ゲームクリア！</h2>
+            <p className="result-eyebrow">全ペアを揃えました 🎉</p>
+            <p className="result-time">
+              クリアタイム<br />
+              <strong>{formatTime(elapsedMs)}</strong>
+            </p>
+            <div className="result-buttons">
               <button
                 type="button"
-                className={styles.retryButton}
+                className="start-button"
                 onClick={initGame}
               >
                 もう一度
               </button>
-              <Link href={backLink} className={styles.quitButton}>
-                やめる
-              </Link>
+              {onQuit ? (
+                <button onClick={onQuit} className="quit-button" style={{ display: "block", textAlign: "center", textDecoration: "none", width: "100%" }}>
+                  やめる
+                </button>
+              ) : (
+                <Link href={backLink} className="quit-button" style={{ display: "block", textAlign: "center", textDecoration: "none" }}>
+                  やめる
+                </Link>
+              )}
             </div>
           </div>
         </div>

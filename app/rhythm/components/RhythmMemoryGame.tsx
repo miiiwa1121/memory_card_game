@@ -13,8 +13,6 @@ import {
   ALL_RHYTHMS,
   NAME_PATTERN,
 } from "../lib/game";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 
 const MULTIPLIERS = GameConstants.MULTIPLIERS;
 
@@ -130,13 +128,16 @@ export default function RhythmMemoryGame() {
 
   return (
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", width: "100%" }}>
-      {scene === "menu" && <Header />}
-      <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "24px" }}>
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "64px 24px", gap: "64px" }}>
       
       {/* メニュー画面 */}
       <div className={`screen ${scene === "menu" ? "active" : ""}`} id="menu-screen">
-        <Link href="/" style={{ color: "var(--text-muted)", textDecoration: "none", marginBottom: "1rem", display: "inline-block" }}>← トップページに戻る</Link>
-        <h1>リズム感神経衰弱</h1>
+        <div style={{ textAlign: "center", marginBottom: "32px" }}>
+          <h1 style={{ marginBottom: "12px", fontSize: "2.4rem" }}>リズム感神経衰弱</h1>
+          <p style={{ color: "var(--text-muted)", lineHeight: 1.6 }}>
+            カードをめくってドラムのリズムを聴き分け、<br />同じパターンのペアを揃えよう！
+          </p>
+        </div>
         <div className="menu-buttons">
           
           <p className="menu-label">各リズムの組数</p>
@@ -170,6 +171,26 @@ export default function RhythmMemoryGame() {
           </button>
         </div>
       </div>
+
+      {/* ゲーム紹介（スクロール先） */}
+      {scene === "menu" && (
+        <div style={{
+          background: "var(--surface)",
+          padding: "48px 40px",
+          borderRadius: "var(--radius)",
+          border: "1px solid var(--border)",
+          boxShadow: "var(--shadow)",
+          backdropFilter: "blur(22px)",
+          maxWidth: "800px",
+          width: "100%",
+          textAlign: "center"
+        }}>
+          <h2 style={{ fontSize: "1.5rem", marginBottom: "16px", color: "var(--text)" }}>ゲーム紹介</h2>
+          <p style={{ color: "var(--text-muted)", lineHeight: 1.8 }}>
+            ※ここにゲームの詳しいルールや紹介文が入ります。
+          </p>
+        </div>
+      )}
 
       {/* ゲーム画面 */}
       <div className={`screen ${scene === "game" ? "active" : ""}`} id="game-screen">
@@ -254,7 +275,7 @@ export default function RhythmMemoryGame() {
       </div>
 
       </div>
-      {scene === "menu" && <Footer />}
-    </div>
+      
+      </div>
   );
 }

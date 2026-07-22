@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   // Google Search Console 所有権確認用トークン
-  verification: { google: "3UDpEw_GN1HaR6_kVrLr8GAz14C4lICEZVtEiCmarVg" },
+  verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "3UDpEw_GN1HaR6_kVrLr8GAz14C4lICEZVtEiCmarVg" },
   openGraph: {
     title,
     description,
@@ -70,7 +70,7 @@ export default function RootLayout({
         <script
           defer
           src="https://static.cloudflareinsights.com/beacon.min.js"
-          data-cf-beacon='{"token": "2f362152bf744e7b8c291ac9b674240c"}'
+          data-cf-beacon={`{"token": "${process.env.NEXT_PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN || '2f362152bf744e7b8c291ac9b674240c'}"}`}
         />
       </body>
     </html>

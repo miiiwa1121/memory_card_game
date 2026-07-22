@@ -1,0 +1,306 @@
+/* ======================================
+   デザイントークン
+   ====================================== */
+.game-wrapper {
+  /* デフォルトはリズム/音感のダークカラー。各モードのpage.tsxで上書き可能にします */
+  --bg-1: #0f0c29;
+  --bg-2: #302b63;
+  --bg-3: #24243e;
+
+  --surface: rgba(255, 255, 255, 0.08);
+  --surface-strong: rgba(255, 255, 255, 0.14);
+  --border: rgba(255, 255, 255, 0.16);
+
+  --text: #f5f3ff;
+  --text-muted: rgba(245, 243, 255, 0.65);
+
+  --accent: #818cf8;
+  --accent-2: #c084fc;
+  --pink: #f472b6;
+  --success: #34d399;
+  --success-2: #10b981;
+  --danger: #fb7185;
+
+  --grad-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 50%, var(--pink) 100%);
+  --grad-success: linear-gradient(135deg, var(--success) 0%, var(--success-2) 100%);
+  --grad-card: linear-gradient(155deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+
+  --radius: 22px;
+  --radius-sm: 14px;
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  --shadow-glow: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+  font-family: var(--font-rounded), system-ui, -apple-system, "Segoe UI",
+    "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+}
+
+.game-wrapper * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ======================================
+   背景
+   ====================================== */
+.game-wrapper {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  color: var(--text);
+  background: linear-gradient(-45deg, var(--bg-1), var(--bg-2), var(--bg-3), var(--bg-1));
+  background-size: 400% 400%;
+  animation: bgShift 18s ease infinite;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes bgShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ======================================
+   画面共通（カード状パネル）
+   ====================================== */
+.screen {
+  display: none;
+  position: relative;
+  z-index: 1;
+  width: min(620px, 100%);
+  padding: 44px 40px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+}
+
+.screen.active {
+  display: block;
+  animation: panelIn 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.screen h1, .result-title {
+  font-size: clamp(28px, 6vw, 44px);
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: 0.02em;
+  margin-bottom: 32px;
+  background: var(--grad-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ======================================
+   ボタン共通
+   ====================================== */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  color: var(--text);
+  transition: transform 0.18s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 3px;
+}
+
+/* ======================================
+   メニュー画面
+   ====================================== */
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.start-button {
+  width: 100%;
+  padding: 18px 20px;
+  margin-top: 6px;
+  font-size: clamp(18px, 4vw, 22px);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  border-radius: var(--radius-sm);
+  background: var(--grad-accent);
+  box-shadow: var(--shadow-glow);
+}
+
+.start-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
+}
+
+/* ======================================
+   ゲーム画面（コンテナ）
+   ====================================== */
+#game-screen {
+  position: relative;
+  width: auto;
+  max-width: min(96vw, 1100px);
+  padding: 24px;
+  overflow: hidden;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.game-info {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.game-info span {
+  padding: 8px 16px;
+  font-size: clamp(15px, 3vw, 18px);
+  font-weight: 700;
+  border-radius: 999px;
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  font-variant-numeric: tabular-nums;
+}
+
+.quit-button--header {
+  width: auto;
+  padding: 10px 18px;
+  font-size: clamp(15px, 3vw, 18px);
+  border-radius: 999px;
+  background: rgba(251, 113, 133, 0.2);
+  border: 1px solid rgba(251, 113, 133, 0.4);
+  color: var(--danger);
+}
+
+.quit-button--header:hover {
+  transform: translateY(-2px);
+  background: rgba(251, 113, 133, 0.32);
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+/* ======================================
+   リザルト（オーバーレイ）
+   ====================================== */
+.result-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(15, 12, 41, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: fadeIn 0.3s ease;
+  border-radius: var(--radius);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.result-card {
+  width: min(420px, 100%);
+  text-align: center;
+  padding: 36px 32px;
+  border-radius: var(--radius);
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  animation: panelIn 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.result-eyebrow {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.3em;
+  color: var(--success);
+  margin-bottom: 8px;
+}
+
+.result-title {
+  font-size: clamp(24px, 6vw, 34px);
+  background: var(--grad-success);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: pop 1.2s ease infinite;
+  margin-bottom: 0;
+}
+
+.result-time {
+  margin: 18px 0 28px;
+  font-size: clamp(16px, 4vw, 20px);
+  color: var(--text-muted);
+}
+
+.result-time strong {
+  font-size: 1.7em;
+  font-weight: 800;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.result-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.quit-button {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: clamp(16px, 3.4vw, 19px);
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+}
+
+.quit-button:hover {
+  transform: translateY(-2px);
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+@keyframes pop {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-wrapper, .screen.active, .result-overlay, .result-card, .result-title {
+    animation: none !important;
+  }
+}

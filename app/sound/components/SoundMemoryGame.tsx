@@ -12,8 +12,6 @@ import {
   GameConstants,
   Scene,
 } from "../lib/game";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 
 const MULTIPLIERS = GameConstants.MULTIPLIERS;
 const WHITE_PER_OCTAVE = GameConstants.WHITE_PER_OCTAVE;
@@ -74,11 +72,10 @@ export default function SoundMemoryGame() {
   const dragRef = useRef(false);
   const modeRef = useRef<"add" | "remove">("add");
 
-  if (audioRef.current === null && typeof window !== "undefined") {
-    audioRef.current = new AudioPlayer();
-  }
-
   useEffect(() => {
+    if (audioRef.current === null) {
+      audioRef.current = new AudioPlayer();
+    }
     selectedRef.current = selected;
   }, [selected]);
 
@@ -221,13 +218,16 @@ export default function SoundMemoryGame() {
 
   return (
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", width: "100%" }}>
-      {scene === "menu" && <Header />}
-      <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "24px" }}>
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "64px 24px", gap: "64px" }}>
       
       {/* メニュー画面 */}
       <div className={`screen ${scene === "menu" ? "active" : ""}`} id="menu-screen">
-        <Link href="/" style={{ color: "var(--text-muted)", textDecoration: "none", marginBottom: "1rem", display: "inline-block" }}>← トップページに戻る</Link>
-        <h1>音階神経衰弱</h1>
+        <div style={{ textAlign: "center", marginBottom: "32px" }}>
+          <h1 style={{ marginBottom: "12px", fontSize: "2.4rem" }}>音階神経衰弱</h1>
+          <p style={{ color: "var(--text-muted)", lineHeight: 1.6 }}>
+            カードをめくってピアノの音を聴き分け、<br />同じ音程のペアを揃えよう！
+          </p>
+        </div>
         <div className="menu-buttons">
           <p className="menu-label">音の種類（鍵盤をなぞって選択）</p>
           <div
@@ -296,6 +296,26 @@ export default function SoundMemoryGame() {
           </button>
         </div>
       </div>
+
+      {/* ゲーム紹介（スクロール先） */}
+      {scene === "menu" && (
+        <div style={{
+          background: "var(--surface)",
+          padding: "48px 40px",
+          borderRadius: "var(--radius)",
+          border: "1px solid var(--border)",
+          boxShadow: "var(--shadow)",
+          backdropFilter: "blur(22px)",
+          maxWidth: "800px",
+          width: "100%",
+          textAlign: "center"
+        }}>
+          <h2 style={{ fontSize: "1.5rem", marginBottom: "16px", color: "var(--text)" }}>ゲーム紹介</h2>
+          <p style={{ color: "var(--text-muted)", lineHeight: 1.8 }}>
+            ※ここにゲームの詳しいルールや紹介文が入ります。
+          </p>
+        </div>
+      )}
 
       {/* ゲーム画面 */}
       <div className={`screen ${scene === "game" ? "active" : ""}`} id="game-screen">
@@ -380,7 +400,7 @@ export default function SoundMemoryGame() {
       </div>
 
       </div>
-      {scene === "menu" && <Footer />}
-    </div>
+      
+      </div>
   );
 }

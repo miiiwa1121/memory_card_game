@@ -29,26 +29,31 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: var(--theme-card-radius, 12px);
+  border-radius: var(--radius-sm, 14px);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  box-shadow: var(--theme-shadow);
-  border: var(--theme-border);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   overflow: hidden;
 }
 
 .front {
-  background: var(--theme-card-front);
+  background: var(--grad-card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .questionMark {
   font-size: 2.4rem;
   font-weight: 800;
-  color: var(--theme-text);
+  color: var(--text-muted);
 }
 
 .back {
-  background: var(--theme-card-back);
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   transform: rotateY(180deg);
   padding: 6px;
   gap: 4px;
@@ -67,6 +72,29 @@
 .name {
   font-size: 0.8rem;
   font-weight: 700;
-  color: var(--theme-primary);
+  color: var(--text);
   text-align: center;
+}
+
+.colorBox {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.textWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 8px;
+}
+
+.textContent {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  word-break: break-word;
+  color: var(--text);
 }
