@@ -30,7 +30,7 @@ export default function Header() {
       <div className={styles.inner}>
         <Link href="/" className={styles.logo} onClick={closeMenu}>
           <span className={styles.logoIcon}>🃏</span>
-          <span className={styles.logoText}>神経衰弱コレクション</span>
+          <span className={styles.logoText}>Synesthesium</span>
         </Link>
 
         {/* ハンバーガーボタン */}

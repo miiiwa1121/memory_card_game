@@ -31,8 +31,9 @@
 .brandName {
   font-size: 1.25rem;
   font-weight: 800;
+  font-family: 'Rosewood Std', 'Rosewood', serif;
   color: #111;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
 }
 
 .brandDesc {

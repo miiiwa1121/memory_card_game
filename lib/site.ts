@@ -5,8 +5,8 @@
 // 現在: Cloudflare Workers（Static Assets）の本番ドメイン
 // （Cloudflare ダッシュボード → Workers & Pages → 該当 Worker の URL）
 // 独自ドメインを割り当てたら、その値に変更すること。
-export const siteUrl = "https://morse-card-game.vercel.app";
+export const siteUrl = "https://synesthesium-card-game.miiiwa.workers.dev"; // 仮の新しいドメインとして設定
 
-export const siteName = "モールス神経衰弱 | Morse Card Game";
+export const siteName = "Synesthesium | 感覚を刺激する神経衰弱コレクション";
 
-export const siteDescription = "8種類の文字でひらがなとモールス信号のペアを見つけるモールス神経衰弱。ブラウザで無料でプレイできます。";
+export const siteDescription = "音階、色覚、モールス、リズムなど、様々な感覚を研ぎ澄ます無料の神経衰弱ゲーム・コレクション。ブラウザで無料でプレイできます。";

@@ -20,7 +20,7 @@ export default function Footer() {
         {/* ── Brand ── */}
         <div className={styles.brand}>
           <span className={styles.brandIcon}>🃏</span>
-          <span className={styles.brandName}>神経衰弱コレクション</span>
+          <span className={styles.brandName}>Synesthesium</span>
           <p className={styles.brandDesc}>
             インストール不要・登録不要。
             <br />
@@ -46,7 +46,7 @@ export default function Footer() {
       {/* ── Copyright ── */}
       <div className={styles.bottom}>
         <p className={styles.copyright}>
-          &copy; {currentYear} 神経衰弱コレクション. All rights reserved.
+          &copy; {currentYear} Synesthesium. All rights reserved.
         </p>
       </div>
     </footer>

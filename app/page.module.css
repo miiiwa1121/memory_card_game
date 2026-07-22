@@ -16,9 +16,10 @@
 }
 
 .title {
-  font-size: 4rem;
+  font-size: 4.5rem;
   font-weight: 900;
-  letter-spacing: -0.04em;
+  font-family: 'Rosewood Std', 'Rosewood', serif;
+  letter-spacing: 0.02em;
   margin: 0 0 16px;
   background: linear-gradient(135deg, #111 0%, #555 100%);
   -webkit-background-clip: text;

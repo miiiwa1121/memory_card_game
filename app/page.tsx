@@ -43,7 +43,7 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.container}>
         <header className={styles.hero}>
-          <h1 className={styles.title}>Memory Cards</h1>
+          <h1 className={styles.title}>Synesthesium</h1>
           <p className={styles.subtitle}>
             様々なテーマで作られた、脳を刺激するメモリーゲームコレクション。
           </p>

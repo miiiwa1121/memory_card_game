@@ -4,9 +4,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
-const title = "野菜神経衰弱 | 8種の野菜で遊ぶ無料のメモリーカードゲーム";
+const title = "Synesthesium | 感覚を刺激する神経衰弱ゲーム・コレクション";
 const description =
-  "ほうれん草・小松菜・春菊など8種類の野菜カードで楽しむ神経衰弱（メモリーカードゲーム）。ブラウザだけで無料で遊べる。インストール不要・登録不要。";
+  "音階、色覚、モールス、リズムなど、様々な感覚を研ぎ澄ます無料の神経衰弱ゲーム。ブラウザだけで無料で遊べる。インストール不要・登録不要。";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

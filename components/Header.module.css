@@ -41,6 +41,7 @@
 .logoText {
   font-size: 1.25rem;
   font-weight: 800;
+  font-family: 'Rosewood Std', 'Rosewood', serif;
   background: linear-gradient(135deg, #111, #555);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
