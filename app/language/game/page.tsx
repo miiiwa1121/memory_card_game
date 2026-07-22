@@ -14,9 +14,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function GamePage() {
+export default function LanguageGame() {
   return (
-    <div className={styles.page}>
+    <div className={`${styles.page} theme-language`}>
       <nav className={styles.navbar}>
         <Link href="/language" className={styles.backLink}>
           ← 言語ゲームトップへ戻る
@@ -30,6 +30,7 @@ export default function GamePage() {
             { id: lang.id, text: lang.en }
           ])} 
           backLink="/language" 
+          theme="language"
         />
       </main>
     </div>

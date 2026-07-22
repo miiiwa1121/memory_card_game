@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { siteUrl, siteName } from "@/lib/site";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import styles from "./page.module.css";
 
 // ゲーム本体を表す VideoGame 構造化データ（JSON-LD）。
@@ -28,7 +30,9 @@ const gameJsonLd = {
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+      <Header />
+      <main className={styles.main} style={{ flex: 1 }}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(gameJsonLd) }}
@@ -42,6 +46,8 @@ export default function Home() {
           ゲームスタート
         </Link>
       </div>
-    </main>
+      <Footer />
+      </main>
+    </div>
   );
 }

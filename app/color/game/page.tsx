@@ -13,9 +13,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function GamePage() {
+export default function ColorGame() {
   return (
-    <div className={styles.page}>
+    <div className={`${styles.page} theme-color`}>
       <nav className={styles.navbar}>
         <Link href="/color" className={styles.backLink}>
           ← 色ゲームトップへ戻る
@@ -23,7 +23,7 @@ export default function GamePage() {
       </nav>
       <main className={styles.main}>
         <h1 className={styles.heading}>色覚神経衰弱</h1>
-        <GameBoard cardDefinitions={COLORS} backLink="/color" />
+        <GameBoard cardDefinitions={COLORS} backLink="/color" theme="color" />
       </main>
     </div>
   );

@@ -9,7 +9,7 @@
   text-align: center;
   font-size: 1.4rem;
   font-weight: 800;
-  color: #2e7d32;
+  color: var(--theme-primary);
   margin-bottom: 16px;
   font-variant-numeric: tabular-nums;
   letter-spacing: 1px;
@@ -43,7 +43,7 @@
 .clearTitle {
   font-size: 2rem;
   font-weight: 800;
-  color: #2e7d32;
+  color: var(--theme-primary);
   margin: 0 0 8px;
 }
 
@@ -62,7 +62,7 @@
 .resultTime {
   font-size: 2.2rem;
   font-weight: 800;
-  color: #2e7d32;
+  color: var(--theme-primary);
   margin: 0 0 28px;
   font-variant-numeric: tabular-nums;
   letter-spacing: 1px;
@@ -83,22 +83,22 @@
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease;
   text-decoration: none;
-  border: 2px solid #43a047;
+  border: 2px solid var(--theme-primary);
 }
 
 .retryButton {
-  background: #43a047;
+  background: var(--theme-primary);
   color: #fff;
 }
 
 .retryButton:hover {
-  background: #2e7d32;
-  border-color: #2e7d32;
+  background: var(--theme-primary-hover);
+  border-color: var(--theme-primary-hover);
 }
 
 .quitButton {
   background: #fff;
-  color: #43a047;
+  color: var(--theme-primary);
 }
 
 .quitButton:hover {

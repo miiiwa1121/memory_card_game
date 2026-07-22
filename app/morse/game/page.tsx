@@ -14,9 +14,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function GamePage() {
+export default function MorseGame() {
   return (
-    <div className={styles.page}>
+    <div className={`${styles.page} theme-morse`}>
       <nav className={styles.navbar}>
         <Link href="/morse" className={styles.backLink}>
           ← モールスゲームトップへ戻る
@@ -30,6 +30,7 @@ export default function GamePage() {
             { id: m.id, text: m.morse }
           ])} 
           backLink="/morse" 
+          theme="morse"
         />
       </main>
     </div>

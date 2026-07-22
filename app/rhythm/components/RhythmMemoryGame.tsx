@@ -13,6 +13,8 @@ import {
   ALL_RHYTHMS,
   NAME_PATTERN,
 } from "../lib/game";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const MULTIPLIERS = GameConstants.MULTIPLIERS;
 
@@ -127,7 +129,10 @@ export default function RhythmMemoryGame() {
   }, []);
 
   return (
-    <>
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", width: "100%" }}>
+      {scene === "menu" && <Header />}
+      <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "24px" }}>
+      
       {/* メニュー画面 */}
       <div className={`screen ${scene === "menu" ? "active" : ""}`} id="menu-screen">
         <Link href="/" style={{ color: "var(--text-muted)", textDecoration: "none", marginBottom: "1rem", display: "inline-block" }}>← トップページに戻る</Link>
@@ -247,6 +252,9 @@ export default function RhythmMemoryGame() {
           </div>
         )}
       </div>
-    </>
+
+      </div>
+      {scene === "menu" && <Footer />}
+    </div>
   );
 }

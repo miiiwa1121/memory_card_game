@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import styles from "./page.module.css";
 
 const games = [
@@ -40,7 +42,9 @@ export default function Home() {
   };
 
   return (
-    <main className={styles.main}>
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+      <Header />
+      <main className={styles.main} style={{ flex: 1 }}>
       <div className={styles.container}>
         <header className={styles.hero}>
           <h1 className={styles.title}>Synesthesium</h1>
@@ -113,6 +117,8 @@ export default function Home() {
           </div>
         </div>
       )}
-    </main>
+      <Footer />
+      </main>
+    </div>
   );
 }

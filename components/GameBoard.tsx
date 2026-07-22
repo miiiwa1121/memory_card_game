@@ -9,6 +9,7 @@ type GameBoardProps = {
   cardDefinitions?: Omit<CardData, "uid">[];
   initialDeck?: Omit<CardData, "uid">[];
   backLink?: string;
+  theme?: "vegetable" | "color" | "language" | "morse" | "knowledge";
 };
 
 function buildDeck(definitions: Omit<CardData, "uid">[]): CardData[] {
@@ -36,7 +37,7 @@ function formatTime(ms: number): string {
   return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 }
 
-export default function GameBoard({ cardDefinitions, initialDeck, backLink = "/" }: GameBoardProps) {
+export default function GameBoard({ cardDefinitions, initialDeck, backLink = "/", theme }: GameBoardProps) {
   const [cards, setCards] = useState<CardData[]>([]);
   const [flipped, setFlipped] = useState<number[]>([]);
   const [matched, setMatched] = useState<string[]>([]);
@@ -118,7 +119,7 @@ export default function GameBoard({ cardDefinitions, initialDeck, backLink = "/"
   );
 
   return (
-    <div className={styles.wrapper}>
+    <div className={`${styles.wrapper} ${theme ? `theme-${theme}` : ""}`}>
       <div className={styles.timer} aria-live="off">
         ⏱ {formatTime(elapsedMs)}
       </div>

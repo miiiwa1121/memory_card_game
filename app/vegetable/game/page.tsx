@@ -13,9 +13,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function GamePage() {
+export default function VegetableGame() {
   return (
-    <div className={styles.page}>
+    <div className={`${styles.page} theme-vegetable`}>
       <nav className={styles.navbar}>
         <Link href="/vegetable" className={styles.backLink}>
           ← 野菜ゲームトップへ戻る
@@ -23,7 +23,7 @@ export default function GamePage() {
       </nav>
       <main className={styles.main}>
         <h1 className={styles.heading}>野菜神経衰弱</h1>
-        <GameBoard cardDefinitions={VEGETABLES} backLink="/vegetable" />
+        <GameBoard cardDefinitions={VEGETABLES} backLink="/vegetable" theme="vegetable" />
       </main>
     </div>
   );

@@ -29,25 +29,26 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
+  border-radius: var(--theme-card-radius, 12px);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--theme-shadow);
+  border: var(--theme-border);
   overflow: hidden;
 }
 
 .front {
-  background: linear-gradient(145deg, #66bb6a, #43a047);
+  background: var(--theme-card-front);
 }
 
 .questionMark {
   font-size: 2.4rem;
   font-weight: 800;
-  color: #ffffff;
+  color: var(--theme-text);
 }
 
 .back {
-  background: #ffffff;
+  background: var(--theme-card-back);
   transform: rotateY(180deg);
   padding: 6px;
   gap: 4px;
@@ -66,6 +67,6 @@
 .name {
   font-size: 0.8rem;
   font-weight: 700;
-  color: #2e7d32;
+  color: var(--theme-primary);
   text-align: center;
 }

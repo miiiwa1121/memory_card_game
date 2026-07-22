@@ -14,9 +14,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function GamePage() {
+export default function KnowledgeGame() {
   return (
-    <div className={styles.page}>
+    <div className={`${styles.page} theme-knowledge`}>
       <nav className={styles.navbar}>
         <Link href="/knowledge" className={styles.backLink}>
           ← 知識ゲームトップへ戻る
@@ -30,6 +30,7 @@ export default function GamePage() {
             { id: k.id, text: k.answer }
           ])} 
           backLink="/knowledge" 
+          theme="knowledge"
         />
       </main>
     </div>
