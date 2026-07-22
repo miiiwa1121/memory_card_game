@@ -1,4 +1,6 @@
 import React, { ReactNode } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
 
 export type Scene = "menu" | "game";
 
@@ -22,9 +24,11 @@ export default function GameLayout({
   children,
 }: GameLayoutProps) {
   return (
-    <div className="game-wrapper" style={{ ...themeVars, width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <>
+      {scene === "menu" && <Header />}
+      <div className="game-wrapper" style={{ flex: 1, ...themeVars, width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
       {/* メニュー画面 (1画面分確保して、スクロールで紹介を見せる) */}
-      <div style={{ minHeight: "calc(100vh - 80px)", width: "100%", display: "flex", alignItems: "center", justifyContent: "center", padding: "24px" }}>
+      <div style={{ minHeight: "calc(100vh - 80px)", width: "100%", display: scene === "menu" ? "flex" : "none", alignItems: "center", justifyContent: "center", padding: "24px" }}>
         <div className={`screen ${scene === "menu" ? "active" : ""}`} id="menu-screen">
           <div style={{ textAlign: "center", marginBottom: "32px" }}>
             <h1 style={{ marginBottom: "12px", fontSize: "2.4rem" }}>{title}</h1>
@@ -65,6 +69,8 @@ export default function GameLayout({
           {children}
         </div>
       </div>
-    </div>
+      </div>
+      {scene === "menu" && <Footer />}
+    </>
   );
 }
