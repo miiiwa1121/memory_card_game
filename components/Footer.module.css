@@ -1,0 +1,113 @@
+.footer {
+  margin-top: 64px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  color: #555;
+}
+
+.inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 64px 40px 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+/* ── Brand ── */
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.brandIcon {
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.brandName {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #111;
+  letter-spacing: -0.02em;
+}
+
+.brandDesc {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #666;
+}
+
+/* ── Links Section ── */
+.linksSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.linksTitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #888;
+  margin: 0;
+}
+
+.linksList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #444;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: inline-block;
+}
+
+.link:hover {
+  color: #000;
+}
+
+/* ── Bottom / Copyright ── */
+.bottom {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 24px 40px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.copyright {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #999;
+  text-align: center;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .inner {
+    padding: 48px 20px 32px;
+  }
+  .bottom {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { siteUrl, siteName } from "@/lib/site";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const title = "野菜神経衰弱 | 8種の野菜で遊ぶ無料のメモリーカードゲーム";
@@ -65,7 +67,11 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
-        {children}
+        <Header />
+        <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+          <main style={{ flex: 1 }}>{children}</main>
+          <Footer />
+        </div>
         {/* Cloudflare Web Analytics */}
         <script
           defer
